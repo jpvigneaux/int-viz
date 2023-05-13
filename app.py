@@ -16,7 +16,10 @@ with st.sidebar:
 
 query = f"continent=='{continent}' & metric=='{metric}'"   #query with formatted string
 df_gdp_o = df.query(query)   
-fig = px.line(df_gdp_o, x='year', y='value', color='country', title='GDP for Countries in Oceania')
+
+metric_labels = { 'gdpPercap' : 'GDP Per Capita', 'lifeExp' : 'Average Life Expectancy', 'pop' : 'Population' }
+title= f'{metric_labels[metric]} for Countries in {continent}'
+fig = px.line(df_gdp_o, x='year', y='value', color='country', title=title)
 
 
 st.plotly_chart(fig, use_container_width=True)
